@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   # Liberando rotas expecíficas
-  resources :manufacturers, only: [:index] 
+  resources :manufacturers, only: [:index, :show] 
 end

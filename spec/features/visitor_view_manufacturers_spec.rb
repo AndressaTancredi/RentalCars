@@ -4,7 +4,7 @@ feature 'Visitor view manufacturers' do
   scenario 'successfully' do
     # 3A ou AAA = Arrange, Act e Assert.
     # 1 Arrange
-    Manufacturer.create!(name: 'Fiat') # Esse !(bang)no create é para se DER erro avisar.
+    Manufacturer.create!(name: 'Fiat') # Esse !(bang)no create é para se DER erro, avisar.
     Manufacturer.create!(name: 'Volkswagen')
 
     # 2 Act
