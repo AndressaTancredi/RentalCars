@@ -1,10 +1,10 @@
 <h1> Novo Fabricante </h1>
 
-<% if @manufacturer.errors.full_message.any? %>
+<% if @manufacturer.errors.full_messages.any? %>
   <p> Não foi possível salvar, verifique os erros abaixo: </p>
   <ul>
-  <% @manufacturer.errors.full_message.each do |m|%>
-    <li><%= msg %></li>
+  <% @manufacturer.errors.full_messages.each do |m|%>
+    <li><%= m %></li>
   <%end%>
   </ul>
 <% end %>

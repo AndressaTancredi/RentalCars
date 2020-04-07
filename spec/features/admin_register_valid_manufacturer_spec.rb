@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Admin register valid manufacturer' do
   scenario 'and name must be unique' do
-    Manufacturer.create(name: 'Fiat' )
+    Manufacturer.create!(name: 'Fiat' )
     visit root_path
     click_on 'Fabricantes'
     click_on 'Registrar novo fabricante'
@@ -10,7 +10,7 @@ feature 'Admin register valid manufacturer' do
     fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
 
-    expect(Manufacturer.count).to eq 0
+    expect(Manufacturer.count).to eq 1
     expect(page).to have_content('Nome deve ser único')
   end
 

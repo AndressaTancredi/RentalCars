@@ -17,7 +17,7 @@ class ManufacturersController < ApplicationController
 
   def create
     name = params[:manufacturer][:name]
-    @manufacturer = Manufacturer.new
+    @manufacturer = Manufacturer.new(manufacturer_params)
     @manufacturer.name = name
     if @manufacturer.save
 
@@ -31,5 +31,9 @@ class ManufacturersController < ApplicationController
   end
 
   def update
+  end
+
+  def manufacturer_params
+    params.require(:manufacturer).permit(:name)
   end
 end
