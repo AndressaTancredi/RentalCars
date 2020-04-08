@@ -1,10 +1,12 @@
 class ManufacturersController < ApplicationController
+
+  before_action :set_manufacturer, only: [:show, :edit, :update]
+
   def index
     @manufacturers = Manufacturer.all
   end
 
   def show
-    @manufacturer = Manufacturer.find(params[:id])
   end
 
   # Find já tennho o id;
@@ -16,9 +18,8 @@ class ManufacturersController < ApplicationController
   end
 
   def create
-    name = params[:manufacturer][:name]
     @manufacturer = Manufacturer.new(manufacturer_params)
-    @manufacturer.name = name
+    
     if @manufacturer.save
 
       # Toda rota que não é get, precisa redirecionar.
@@ -27,13 +28,28 @@ class ManufacturersController < ApplicationController
       # Chama a view com o nome :new 
       render :new
     end
-
   end
 
   def update
+    if @manufacturer.update(manufacturer_params)
+      redirect_to @manufacturer
+    else
+      render 'edit'  
+    end  
   end
+
+  def edit
+  end  
+
+  private
 
   def manufacturer_params
     params.require(:manufacturer).permit(:name)
+    # Usando o permit por segurança - https://guides.rubyonrails.org/action_controller_overview.html#strong-parameters 
   end
+
+  def set_manufacturer
+    @manufacturer = Manufacturer.find(params[:id])
+  end  
+
 end
