@@ -1,4 +1,9 @@
 <%= @manufacturer.name %>
 
 <%= link_to 'Editar', edit_manufacturer_path(@manufacturer.id) %>
+
+form_for/form_with é sempre um post por padrão
+link_to é sempre um get por padrão entao se usa um method para trocar o verbo
+<%= link_to('Apagar fabricante', manufacturer_path(@manufacturer.id), method: :delete) %>
+
 <%= link_to 'Voltar', manufacturers_path %>

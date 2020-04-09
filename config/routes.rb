@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   # Liberando rotas expecíficas
-  resources :manufacturers, only: [:index, :show, :new, :create, :edit, :update] 
-end
+  # resources :manufacturers, only: [:index, :show, :new, :create, :edit, :update, :destroy] 
 
+  # Agora posso apagar o only pq to usando todas as rotas
+  resources :manufacturers
+end

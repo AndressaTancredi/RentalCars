@@ -1,6 +1,6 @@
 class ManufacturersController < ApplicationController
 
-  before_action :set_manufacturer, only: [:show, :edit, :update]
+  before_action :set_manufacturer, only: [:show, :edit, :update, :destroy]
 
   def index
     @manufacturers = Manufacturer.all
@@ -36,6 +36,11 @@ class ManufacturersController < ApplicationController
     else
       render 'edit'  
     end  
+  end
+
+  def destroy
+    @manufacturer.delete
+    redirect_to manufacturers_path
   end
 
   def edit
