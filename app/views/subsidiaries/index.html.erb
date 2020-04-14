@@ -1,4 +1,4 @@
-<h1> Subsidiárias </h1>
+<h1> Filiais </h1>
 
 <% @subsidiaries.each do |subsidiary| %>
     <%= link_to subsidiary.name, subsidiary %>
@@ -7,5 +7,7 @@
 <% if @subsidiaries.empty? %>
   <p> 'Nenhuma subsidiária cadastrada' </p>
 <% end %>
+
+<%= link_to 'Registrar nova subsidiária', new_subsidiary_path%>
 
 <%= link_to 'Voltar',root_path %>
