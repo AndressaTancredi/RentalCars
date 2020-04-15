@@ -12,9 +12,14 @@ feature 'Admin register car categories' do
     click_on 'Enviar'
 
     expect(page).to have_content('Categoria A')
-    expect(page).to have_content('Diária: R$50')
-    expect(page).to have_content('Seguro: R$20')
-    expect(page).to have_content('Seguro para terceiros: R$20')
+    expect(page).to have_content('Diária: R$ 50,00')
+    expect(page).to have_content('Seguro: R$ 20,00')
+    expect(page).to have_content('Seguro para terceiros: R$ 20,00')
 
   end
+
+  # nome obrigatório
+  # Nome deve ser único
+  # Para todos os valores, eles devem ser maiores que 0
+
 end

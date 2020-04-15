@@ -6,14 +6,15 @@
   <%end%>
   </ul>
 <% end %>
-<%= form_with(model: @subsidiary) do |f| %>
-  <%= f.label :name, "Nome" %> 
+
+<%= form_with(model: @subsidiary, local: true) do |f| %>
+  <%= f.label :name %> 
   <%= f.text_field :name %>
 
-  <%= f.label :cnpj, "cnpj" %> 
+  <%= f.label :cnpj %> 
   <%= f.text_field :cnpj %>
 
-  <%= f.label :address, "Address" %> 
+  <%= f.label :address %> 
   <%= f.text_field :address %>
 
   <%= f.submit("Enviar")%>

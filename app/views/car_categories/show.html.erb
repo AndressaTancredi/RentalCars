@@ -2,12 +2,12 @@
 
 <dl>
   <dt> Diária: </dt>
-  <dd> R$<%= @car_category.daily_rate %> </dd>
+  <dd><%= number_to_currency @car_category.daily_rate %> </dd>
   
   <dt> Seguro: </dt>
-  <dd> R$<%= @car_category.car_insurance %> </dd>
+  <dd><%= number_to_currency @car_category.car_insurance %> </dd>
 
   <dt> Seguro para terceiros: </dt>
-  <dd> R$<%= @car_category.third_part_insurance %> </dd>
+  <dd><%= number_to_currency @car_category.third_part_insurance %> </dd>
 
 </dl>
