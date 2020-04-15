@@ -33,7 +33,7 @@ feature 'Admin view subsidiaries' do
     visit root_path
     click_on 'Filiais'
 
-    expect(page).to have_content('Nenhuma subsidiária cadastrada')
+    expect(page).to have_content('Nenhuma filial cadastrada')
   end
 
   scenario 'and return to home page' do

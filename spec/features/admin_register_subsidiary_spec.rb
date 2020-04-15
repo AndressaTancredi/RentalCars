@@ -5,13 +5,13 @@ feature 'Admin register subsidiary' do
     visit root_path
     click_on 'Filiais'
 
-    expect(page).to have_link('Registrar nova subsidiária', href: new_subsidiary_path)
+    expect(page).to have_link('Registrar nova filial', href: new_subsidiary_path)
   end
 
   scenario 'successfully' do
     visit root_path
     click_on 'Filiais'
-    click_on 'Registrar nova subsidiária'
+    click_on 'Registrar nova filial'
 
     fill_in 'Nome', with: 'Tatuapé'
     fill_in 'cnpj', with: '123'
