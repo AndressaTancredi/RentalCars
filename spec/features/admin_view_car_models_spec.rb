@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Admin view car models' do
-  scenario 'successfully' do
+  xscenario 'successfully' do
 
     honda = Manufacturer.create(name: 'Honda')
     cat_a = CarCategory.create(name: 'B')

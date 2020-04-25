@@ -13,6 +13,6 @@ Rails.application.routes.draw do
 
   resources :subsidiaries
 
-  resources :car_categories, only: [:new, :create, :show]
+  resources :car_categories
 
 end

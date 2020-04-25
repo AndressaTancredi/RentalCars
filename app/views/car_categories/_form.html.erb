@@ -1,0 +1,27 @@
+<% if @car_category.errors.full_messages.any? %>
+<p> Não foi possível salvar, verifique os erros abaixo: </p>
+  <ul>
+    <% @car_category.errors.full_messages.each do |m|%>
+      <li> <%= m %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @car_category) do |f| %>
+  <div>
+    <%= f.label :name%>
+    <%= f.text_field :name %>
+
+    <%= f.label :daily_rate %>
+    <%= f.text_field :daily_rate %>
+
+    <%= f.label :car_insurance%>
+    <%= f.text_field :car_insurance %>
+
+    <%= f.label :third_part_insurance %>
+    <%= f.text_field :third_part_insurance %>
+  </div>
+
+  <%= f.submit 'Enviar' %>
+
+<% end %>

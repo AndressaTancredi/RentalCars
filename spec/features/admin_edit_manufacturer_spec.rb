@@ -17,7 +17,7 @@ feature 'Admin edits manufacturer' do
 
   end
 
-  scenario 'and name can be blanck' do
+  scenario 'and name cannot be blanck' do
     Manufacturer.create(name: 'Fiat')
 
     visit root_path
