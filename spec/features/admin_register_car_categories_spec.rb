@@ -16,7 +16,6 @@ feature 'Admin register car categories' do
     expect(page).to have_content('Diária: R$ 50,00')
     expect(page).to have_content('Seguro: R$ 20,00')
     expect(page).to have_content('Seguro para terceiros: R$ 20,00')
-
   end
 
   scenario 'and name cannot be blanck' do
@@ -29,7 +28,6 @@ feature 'Admin register car categories' do
     click_on 'Enviar'
 
     expect(page).to have_content('não pode ficar em branco')
-
   end
 
   scenario 'and name must be unique' do
@@ -42,43 +40,19 @@ feature 'Admin register car categories' do
 
     expect(CarCategory.count).to eq 1
     expect(page).to have_content('já está em uso')
-    
   end
 
-  scenario 'and the daily_rate value must be greater than 0' do
-    CarCategory.create(daily_rate: 0)
+  scenario 'and the numeraticaly values must be greater than 0' do
+    CarCategory.create(daily_rate: 0, car_insurance: 0, third_part_insurance: 0)
 
     visit root_path
     click_on 'Registrar nova categoria de carro'
     fill_in 'Diária', with: '0'
-    click_on 'Enviar'
-
-    expect(page).to have_content('deve ser maior que 0')
-
-  end
-
-  scenario 'and the car_insurance value must be greater than 0' do
-    CarCategory.create(car_insurance: 0)
-
-    visit root_path
-    click_on 'Registrar nova categoria de carro'
     fill_in 'Seguro', with: '0'
-    click_on 'Enviar'
-
-    expect(page).to have_content('deve ser maior que 0')
-
-  end
-
-  scenario 'and the third_part_insurance value must be greater than 0' do
-    CarCategory.create(third_part_insurance: 0)
-
-    visit root_path
-    click_on 'Registrar nova categoria de carro'
     fill_in 'Seguro para terceiros', with: '0'
     click_on 'Enviar'
 
     expect(page).to have_content('deve ser maior que 0')
-
   end
 
   scenario 'and return to home page' do
