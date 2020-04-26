@@ -31,11 +31,14 @@ feature 'Admin register car categories' do
   end
 
   scenario 'and name must be unique' do
-    CarCategory.create!(name: "B")
+    CarCategory.create!(name: "B", daily_rate: 10, car_insurance: 10, third_part_insurance: 10)
 
     visit root_path
     click_on 'Registrar nova categoria de carro'
     fill_in 'Nome', with: 'B'
+    fill_in 'Diária', with: '10'
+    fill_in 'Seguro', with: '10'
+    fill_in 'Seguro para terceiros', with: '10'
     click_on 'Enviar'
 
     expect(CarCategory.count).to eq 1
