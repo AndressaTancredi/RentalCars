@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   resources :car_categories
 
-  resources :car_models, only: [:index, :new, :create, :show]
+  # %i faz um array de symbols (dois pontos e vírgula)
+  # %w faz um array de texto (string e vírgula)
+  resources :car_models, only: %i[index new create show]
+
+  resources :rentals, only: [:index]
 
 end
