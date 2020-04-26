@@ -15,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :car_categories
 
-  resources :car_models, only: [:index]
-
+  resources :car_models, only: [:index, :new, :create, :show]
 
 end
