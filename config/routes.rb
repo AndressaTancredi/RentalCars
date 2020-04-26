@@ -15,4 +15,7 @@ Rails.application.routes.draw do
 
   resources :car_categories
 
+  resources :car_models, only: [:index]
+
+
 end
