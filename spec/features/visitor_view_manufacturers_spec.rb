@@ -8,6 +8,9 @@ feature 'Visitor view manufacturers' do
     Manufacturer.create!(name: 'Volkswagen')
 
     # 2 Act
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Fabricantes'
 
@@ -20,6 +23,9 @@ feature 'Visitor view manufacturers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -29,6 +35,9 @@ feature 'Visitor view manufacturers' do
   end
 
   scenario 'and no manufacturers are created' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Fabricantes'
 
@@ -38,6 +47,9 @@ feature 'Visitor view manufacturers' do
   scenario 'and return to home page' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Fabricantes'
@@ -50,6 +62,9 @@ feature 'Visitor view manufacturers' do
     Manufacturer.create!(name: 'Fiat')
     Manufacturer.create!(name: 'Volkswagen')
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+    
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'

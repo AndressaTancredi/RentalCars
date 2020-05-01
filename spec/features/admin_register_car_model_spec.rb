@@ -5,6 +5,9 @@ feature 'Admin register car model' do
     fiat = Manufacturer.create!(name:'Fiat')
     cat_a = CarCategory.create!(name: 'A', daily_rate: 50, car_insurance: 20, third_part_insurance: 20)
     
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+    
     visit root_path
     click_on "Modelos de Carros"
     click_on "Cadastrar novo modelo de carro"

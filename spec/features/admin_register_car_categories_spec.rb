@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin register car categories' do
   scenario 'successfuly' do
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Registrar nova categoria de carro'
     fill_in 'Nome', with: 'A'
@@ -19,6 +22,10 @@ feature 'Admin register car categories' do
   end
 
   scenario 'and name cannot be blanck' do
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Registrar nova categoria de carro'
     fill_in 'Nome', with: ''
@@ -32,6 +39,9 @@ feature 'Admin register car categories' do
 
   scenario 'and name must be unique' do
     CarCategory.create!(name: "B", daily_rate: 10, car_insurance: 10, third_part_insurance: 10)
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Registrar nova categoria de carro'
@@ -48,6 +58,9 @@ feature 'Admin register car categories' do
   scenario 'and the numeraticaly values must be greater than 0' do
     CarCategory.create(daily_rate: 0, car_insurance: 0, third_part_insurance: 0)
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Registrar nova categoria de carro'
     fill_in 'Diária', with: '0'
@@ -60,6 +73,9 @@ feature 'Admin register car categories' do
 
   scenario 'and return to home page' do
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+    
     visit root_path
     click_on 'Registrar nova categoria de carro'
     click_on 'Voltar'

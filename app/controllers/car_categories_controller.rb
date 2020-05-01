@@ -1,6 +1,5 @@
 class CarCategoriesController < ApplicationController
-
-
+  before_action :authenticate_user!
 
   def show
     @car_category = CarCategory.find(params[:id])

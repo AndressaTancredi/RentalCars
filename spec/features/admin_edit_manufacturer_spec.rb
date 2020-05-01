@@ -4,6 +4,9 @@ feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     m = Manufacturer.create(name: 'Fiat')
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -20,6 +23,9 @@ feature 'Admin edits manufacturer' do
   scenario 'and name cannot be blanck' do
     Manufacturer.create(name: 'Fiat')
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -33,6 +39,9 @@ feature 'Admin edits manufacturer' do
   scenario 'and name must be unique' do
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Fabricantes'

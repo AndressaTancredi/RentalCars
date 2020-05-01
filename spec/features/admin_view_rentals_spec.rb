@@ -7,6 +7,9 @@ feature 'Admin view rentals' do
 
     Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030', client: client , car_category: car_category)
 
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+    
     visit root_path
     click_on 'Locações'
 
@@ -18,5 +21,12 @@ feature 'Admin view rentals' do
 
   xscenario 'and do not have any' do
     
+  end
+
+  scenario 'and must be logged in' do
+
+    visit rentals_path # Visitar direto sem logar para dar erro
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

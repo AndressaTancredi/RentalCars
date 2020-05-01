@@ -1,5 +1,7 @@
 class RentalsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def index
     @rentals = Rental.all
   end
@@ -13,6 +15,8 @@ class RentalsController < ApplicationController
   def create
     @rental = Rental.new(params.require(:rental).permit(:start_date, :end_date, :car_category_id, :client_id))
     if @rental.save
+      # Flash sempre acompanha um redirect
+      flash[:success] = 'Locação cadastrada com sucesso'
       redirect_to rentals_path
     else
       @car_categories = CarCategory.all

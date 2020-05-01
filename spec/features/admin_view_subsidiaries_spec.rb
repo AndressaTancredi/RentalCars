@@ -7,6 +7,10 @@ feature 'Admin view subsidiaries' do
     Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
 
     #Act
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Filiais'
 
@@ -20,6 +24,9 @@ feature 'Admin view subsidiaries' do
     Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
 
     #Act
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Filiais'
     click_on 'Tatuapé'
@@ -30,6 +37,10 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and no Subsidiary are created' do
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
     visit root_path
     click_on 'Filiais'
 
@@ -39,6 +50,9 @@ feature 'Admin view subsidiaries' do
   scenario 'and return to home page' do
     Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
     Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Filiais'
@@ -50,6 +64,9 @@ feature 'Admin view subsidiaries' do
   scenario 'and return to subsidiaries page' do
     Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
     Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
+
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Filiais'
