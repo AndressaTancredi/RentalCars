@@ -20,16 +20,12 @@ feature 'User log in' do
     expect(page).to have_link('Home')
   end
 
-  scenario 'and logout' do
-    User.create!(email: 'test@test.com.br', password: '12345678')
-
+  xscenario 'and logout' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
     visit root_path
-    click_on 'Entrar'
-    fill_in 'Email', with: 'test@test.com.br'
-    fill_in 'Senha', with: '12345678'
-    click_on 'Log in'
-    click_on 'Logout'
-
+    logout(:user)
+    # TODO quero usar o logout ao invés de clicar em logout
     expect(page).to have_content('Saiu com sucesso')
     expect(page).not_to have_link('Logout')
     expect(page).to have_link('Entrar')

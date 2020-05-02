@@ -22,13 +22,13 @@ feature 'Admin register subsidiary' do
     click_on 'Registrar nova filial'
 
     fill_in 'Nome', with: 'Tatuapé'
-    fill_in 'CNPJ', with: '123'
+    fill_in 'CNPJ', with: '85498967000106'
     fill_in 'Endereço', with: 'Rua Vilela'
     click_on 'Enviar'
 
     expect(current_path).to eq subsidiary_path(Subsidiary.last.id)
     expect(page).to have_content('Tatuapé')
-    expect(page).to have_content('123')
+    expect(page).to have_content('85498967000106')
     expect(page).to have_content('Rua Vilela')
     expect(page).to have_link('Voltar')
   end

@@ -22,6 +22,5 @@ feature 'User search rental' do
 
     expect(page).to have_content(rental.code)
     expect(page).not_to have_content(another_rental.code)
-
     end
 end

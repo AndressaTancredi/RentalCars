@@ -20,7 +20,7 @@ feature 'Admin view rentals' do
   end
 
   xscenario 'and do not have any' do
-    
+    # TODO Fazer esse teste
   end
 
   scenario 'and must be logged in' do

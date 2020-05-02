@@ -1,5 +1,6 @@
 class RentalsController < ApplicationController
 
+  # Se n tiver user logado redireciona automaticamente pra tela de login.
   before_action :authenticate_user!
 
   def index

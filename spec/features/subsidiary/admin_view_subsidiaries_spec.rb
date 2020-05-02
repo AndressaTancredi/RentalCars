@@ -1,16 +1,15 @@
 require 'rails_helper'
 
-feature 'Admin view subsidiaries' do
+feature 'Admin view all subsidiaries' do
   scenario 'successfully' do
     #Arrange:
-    Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
-    Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
-
-    #Act
-
+    Subsidiary.create!(name: 'Tatuapé', cnpj: '85498967000106', address: 'Rua Vilela')
+    Subsidiary.create!(name: 'Bela Vista', cnpj: '45025724000128', address: 'Rua Manuel Dutra')
+    
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     login_as(user, scope: :user)
 
+    #Act
     visit root_path
     click_on 'Filiais'
 
@@ -20,20 +19,20 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and view details' do
-    Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
-    Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
+    Subsidiary.create!(name: 'Tatuapé', cnpj: '85498967000106', address: 'Rua Vilela')
+    Subsidiary.create!(name: 'Bela Vista', cnpj: '45025724000128', address: 'Rua Manuel Dutra')
 
-    #Act
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     login_as(user, scope: :user)
 
+    #Act
     visit root_path
     click_on 'Filiais'
     click_on 'Tatuapé'
 
     #Assert
-    expect(page).to have_content('Rua Vilela 123 Tatuapé')
-    expect(page).not_to have_content('Rua Manuel Dutra - 321 - Bela Vista')
+    expect(page).to have_content('Rua Vilela 85498967000106 Tatuapé')
+    expect(page).not_to have_content('Rua Manuel Dutra - 45025724000128 - Bela Vista')
   end
 
   scenario 'and no Subsidiary are created' do
@@ -48,8 +47,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to home page' do
-    Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
-    Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
+    Subsidiary.create!(name: 'Tatuapé', cnpj: '85498967000106', address: 'Rua Vilela')
+    Subsidiary.create!(name: 'Bela Vista', cnpj: '45025724000128', address: 'Rua Manuel Dutra')
 
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     login_as(user, scope: :user)
@@ -62,8 +61,8 @@ feature 'Admin view subsidiaries' do
   end
 
   scenario 'and return to subsidiaries page' do
-    Subsidiary.create!(name: 'Tatuapé', cnpj: '123', address: 'Rua Vilela')
-    Subsidiary.create!(name: 'Bela Vista', cnpj: '321', address: 'Rua Manuel Dutra')
+    Subsidiary.create!(name: 'Tatuapé', cnpj: '85498967000106', address: 'Rua Vilela')
+    Subsidiary.create!(name: 'Bela Vista', cnpj: '45025724000128', address: 'Rua Manuel Dutra')
 
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     login_as(user, scope: :user)
@@ -76,5 +75,10 @@ feature 'Admin view subsidiaries' do
     expect(current_path).to eq subsidiaries_path
   end
 
-end
+  scenario 'and must be logged in' do
+    
+    visit subsidiaries_path
 
+    expect(current_path).to eq new_user_session_path
+  end
+end
