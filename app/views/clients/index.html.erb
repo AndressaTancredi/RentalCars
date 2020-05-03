@@ -2,8 +2,8 @@
 
 <%= link_to 'Cadastrar Novo Cliente', new_client_path %>
 
-<%#= form_tag(search_clients_path, method: :get) do %>
-  <%#= label_tag :query, 'Busca' %>
-  <%#= text_field_tag :query %>
-  <%#= submit_tag 'Buscar' %>
-<%# end %>
+<%= form_tag(search_clients_path, method: :get) do %>
+  <%= label_tag :query, 'Busca' %>
+  <%= text_field_tag :query %>
+  <%= submit_tag 'Buscar' %>
+<% end %>

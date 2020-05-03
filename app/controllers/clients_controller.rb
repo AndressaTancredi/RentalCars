@@ -21,4 +21,11 @@ class ClientsController < ApplicationController
       render :new
     end
   end
+
+  def search
+    # Sintaxe do SQL para evitar uma SQL injection, alguém que use esse imput para por ex. deletar seu BD
+    @search_query = params[:query]
+    @clients = Client.where("name LIKE ?", "%#{params[:query]}%")
+                     .or(Client.where(document: @search_query))
+  end 
 end

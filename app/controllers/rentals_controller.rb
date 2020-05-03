@@ -27,6 +27,7 @@ class RentalsController < ApplicationController
   end
 
   def search
+    # TODO comparar com a busca do client - Segurança.
     @rentals = Rental.where(code: params[:q])
     render :index
   end
