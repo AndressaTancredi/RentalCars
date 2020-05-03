@@ -1,0 +1,15 @@
+<h1>Cadastrar Novo Cliente</h1>
+<% if @client.errors.any? %>
+  <div id="errors">
+    <p>Não foi possível cadastrar o novo cliente. Verifique os erros abaixo:</p>
+    <ul>
+    <% @client.errors.full_messages.each do |msg|%>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render 'form'%>
+
+<%= link_to 'Voltar', root_path%>

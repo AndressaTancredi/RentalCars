@@ -7,7 +7,7 @@ feature 'Admin register rental' do
                                        third_part_insurance: 200)
 
     client = Client.create!(name:'Fulano Sicrano', 
-                            document: '578.100.235-94', 
+                            document: '57810023594', 
                             email: 'teste@teste.com.br')
           
     user = User.create!(email: 'test@test.com.br', password: '12345678')

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # resources :manufacturers, only: [:index, :show, :new, :create, :edit, :update, :destroy] 
 
   # Agora posso apagar o only pq to usando todas as rotas
+  resources :clients
+
   resources :manufacturers
 
   resources :subsidiaries
