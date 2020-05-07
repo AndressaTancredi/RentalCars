@@ -8,9 +8,10 @@
 <<section>
   <h1> Agendamentos</h1>
   <% @client.rentals.where(status: :scheduled).each do |rental|%>
-    <<div>
+    <div>
       <%= rental.code %>
       <%= localize%>
-    </div>>
+    </div>
     <%= link_to  "Iniciar Locação", model %>
+  <% end %>  
 </section>>
