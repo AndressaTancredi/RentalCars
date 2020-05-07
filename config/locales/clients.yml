@@ -9,3 +9,9 @@ pt-BR:
         name: Nome
         document: Documento
         email: Email
+  clients:
+    search:
+      results:
+        zero: nenhum cliente encontrado
+        one: 1 cliente encontrado
+        other: '%{count} clientes encontrados'

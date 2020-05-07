@@ -19,8 +19,17 @@ feature 'Admin view rentals' do
     expect(page).to have_content('A')
   end
 
-  xscenario 'and do not have any' do
-    # TODO Fazer esse teste
+  scenario 'and do not have any' do
+    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    login_as(user, scope: :user)
+
+    visit root_path
+    click_on 'Locações'
+
+    expect(page).not_to have_content('16/04/2030')
+    expect(page).not_to have_content('18/04/2030')
+    expect(page).not_to have_content('Fulano Sicrano')
+    expect(page).not_to have_content('A')
   end
 
   scenario 'and must be logged in' do

@@ -27,9 +27,8 @@ class RentalsController < ApplicationController
   end
 
   def search
-    # TODO comparar com a busca do client - Segurança.
+    # Pensando como regra de negócio esse método poderia estar na model (scope ou método de classe)
     @rentals = Rental.where(code: params[:q])
     render :index
   end
-
 end

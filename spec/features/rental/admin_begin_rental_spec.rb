@@ -7,7 +7,7 @@ feature 'Admin begin rental' do
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, 
                                        car_insurance: 100, third_part_insurance: 100)
     client = Client.create!(name: 'Fulano Sicrano', document: '57810023594',
-                                email: 'teste@teste.com.br')
+                            email: 'teste@teste.com.br')
     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030',
                             client: client, car_category: car_category)
 
@@ -100,6 +100,5 @@ feature 'Admin begin rental' do
     expect(page).to have_content "Horário da Retirada: 01/05/2020 13:00:00"
     expect(page).to have_content 'Usuário Responsável: test@test.com'
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
-
   end
 end

@@ -33,10 +33,10 @@ RSpec.describe Subsidiary, type: :model do
   end
 
   describe 'validate unique fields' do
-    xit 'should have an unique name' do
-      # TODO não entendi!
+    it 'should have an unique name' do
+
       Subsidiary.create!(name: 'Paulista', address: 'Rua Brasil', cnpj: '85498967000106')
-      sub = Subsidiary.create!(name: 'Paulista', address: 'Rua Brasil2', cnpj: '45025724000128')
+      sub = Subsidiary.new(name: 'Paulista', address: 'Rua Brasil2', cnpj: '45025724000128')
 
       result = sub.valid?
 

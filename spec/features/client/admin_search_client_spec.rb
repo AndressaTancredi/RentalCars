@@ -41,7 +41,7 @@ feature 'Admin search for client' do
     # Assert
     expect(current_path).to eq search_clients_path
     expect(page).to have_content 'Resultado da busca por: Silva'
-    #expect(page).to have_content '2 clientes encontrados'
+    expect(page).to have_content '2 clientes encontrados'
 
     expect(page).to have_content 'André Silva'
     expect(page).to have_content 'andre@email.com'

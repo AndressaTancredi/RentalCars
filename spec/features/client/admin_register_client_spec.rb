@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 feature 'Admin register customer' do
-  xscenario 'must be signed in' do
-    visit root_path
-    click_on
+  scenario 'must be signed in' do
+    # TODO Se eu coloco rentals_path passa, mas clients_path não.
+    visit clients_path
     expect(current_path).to eq new_user_session_path
   end
 

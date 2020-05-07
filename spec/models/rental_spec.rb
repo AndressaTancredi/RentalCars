@@ -17,7 +17,8 @@ RSpec.describe Rental, type: :model do
 
       expect(rental.code.size).to eq(6)
     end
-    # TODO: Validações
+    # TODO: Stub de código único. (Ver mais na doc)
+    # allow(SecureRandom).to receive(:alphanumeric).and_return('ABC123').twice
   end
 
   context '#status' do

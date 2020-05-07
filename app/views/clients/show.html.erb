@@ -5,3 +5,12 @@
   <dt>Documento:</dt>
   <dd><%= @client.formatted_document%></dd>
 </dl>
+<<section>
+  <h1> Agendamentos</h1>
+  <% @client.rentals.where(status: :scheduled).each do |rental|%>
+    <<div>
+      <%= rental.code %>
+      <%= localize%>
+    </div>>
+    <%= link_to  "Iniciar Locação", model %>
+</section>>
