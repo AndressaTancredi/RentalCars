@@ -32,7 +32,9 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
-  # Para que nos testes eu já esteja com o user logado
+  # Para poder usar o travel_to nos testes:
+  config.include ActiveSupport::Testing::TimeHelpers
+  # Para que nos testes eu já esteja com o user logado:
   config.include Warden::Test::Helpers
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

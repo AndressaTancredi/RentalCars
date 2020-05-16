@@ -7,7 +7,7 @@ feature 'Admin register customer' do
     expect(current_path).to eq new_user_session_path
   end
 
-  xscenario 'successfully' do
+  scenario 'successfully' do
     # TODO erro no teste  undefined method `rentals'
     user = User.create!(email: 'joao@email.com', password: '12345678')
     login_as(user, scope: :user)

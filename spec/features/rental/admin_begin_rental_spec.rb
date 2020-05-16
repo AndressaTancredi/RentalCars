@@ -1,15 +1,16 @@
 require 'rails_helper'
 
 feature 'Admin begin rental' do
-  xscenario 'from customer search' do
+  scenario 'from customer search' do
     # Arrange
     user = User.create!(email: 'test@test.com', password: '12345678')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, 
                                        car_insurance: 100, third_part_insurance: 100)
     client = Client.create!(name: 'Fulano Sicrano', document: '57810023594',
                             email: 'teste@teste.com.br')
+                            # TODO 1.day.from.now
     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030',
-                            client: client, car_category: car_category)
+                            client: client, car_category: car_category, status: :ongoing)
 
     # Act
     login_as(user)
@@ -26,7 +27,7 @@ feature 'Admin begin rental' do
     expect(page).to have_link('Iniciar Locação', href: start_rental_path(rental.id))
   end
 
-  xscenario 'and view available cars' do
+  scenario 'and view available cars' do
     # Arrange
     user = User.create!(email: 'test@test.com', password: '12345678')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, 
@@ -42,16 +43,16 @@ feature 'Admin begin rental' do
     car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul')
     another_car = Car.create(car_model: argos, license_plate: 'XYZ-9876', mileage: 0, color: 'Preto')
 
-    customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594',
+    client = Client.create!(name: 'Fulano Sicrano', document: '57810023594',
                                 email: 'teste@teste.com.br')
 
-
     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030',
-                            customer: customer, car_category: car_category)
+                            client: client, car_category: car_category)
 
     # Act 
     login_as(user, scope: :user)
-    visit customer_path(customer.id)
+    # Cortamos caminho indo logo para o path abaixo (partindo de um tela específica):
+    visit client_path(client.id)
     click_on 'Iniciar Locação'
 
     # Assert
@@ -62,7 +63,7 @@ feature 'Admin begin rental' do
     expect(page).not_to have_content 'Fiat Argos - Placa: XYZ-9876 - Cor: Preto'
   end
 
-  xscenario 'successfully' do
+  scenario 'successfully' do
     # Arrange
     user = User.create!(email: 'test@test.com', password: '12345678')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100, 
@@ -70,14 +71,13 @@ feature 'Admin begin rental' do
 
     fiat = Manufacturer.create!(name: 'Fiat')
     mobi = CarModel.create!(name: 'Mobi', manufacturer: fiat, car_category: car_category)
-    car = Car.create(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul',
-                     status: :available)
+    car = Car.create!(car_model: mobi, license_plate: 'ABC-1234', mileage: 1000, color: 'Azul', status: :available)
 
-    customer = Customer.create!(name: 'Fulano Sicrano', cpf: '57810023594',
+    client = Client.create!(name: 'Fulano Sicrano', document: '57810023594',
                                 email: 'teste@teste.com.br')
 
     rental = Rental.create!(start_date: '16/04/2030', end_date: '18/04/2030',
-                            customer: customer, car_category: car_category)
+                            client: client, car_category: car_category)
 
     # Act
     login_as(user, scope: :user)
@@ -90,14 +90,17 @@ feature 'Admin begin rental' do
     
     # Assert
 
-    rental.reload
+    rental.reload # Recarrega o obj, pq ele foi mudado no decorrer do teste
     car.reload
+
+    expect(current_path).to eq rental_path(rental.id)
+
     expect(rental.ongoing?).to be true
     expect(car.rented?).to be true
-    expect(current_path).to eq rental_path(rental.id)
+
     expect(page).to have_content 'Status Iniciada'
     expect(page).to have_content 'Fulano Sicrano'
-    expect(page).to have_content "Horário da Retirada: 01/05/2020 13:00:00"
+    expect(page).to have_content 'Horário da Retirada: 01/05/2020 13:00:00'
     expect(page).to have_content 'Usuário Responsável: test@test.com'
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
   end

@@ -2,6 +2,7 @@ class Client < ApplicationRecord
   validates :name, :document, :email, presence: true
   validates :document, :email, uniqueness: true
   validate :valid_document
+  has_many :rentals
 
   def formatted_document
     CPF.new(self.document).formatted

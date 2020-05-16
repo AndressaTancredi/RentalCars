@@ -33,10 +33,12 @@ RSpec.describe Rental, type: :model do
       rental = Rental.new(start_date: '16/04/2030', end_date: '18/04/2030', 
                      client: client , car_category: car_category)
       
-      rental.save!
+      rental.scheduled!
 
-      # rental.scheduled? método que vem do enum
-      # preciso add no model = rails g migration add_status_to_rental status:integer
+      # métodos que vem do enum
+      # rental.scheduled? 
+      # remtal.scheduled!  Esse faz um update 
+      # precisei add no model = rails g migration add_status_to_rental status:integer
       expect(rental.scheduled?).to be true
     end
   end

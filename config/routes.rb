@@ -24,7 +24,9 @@ Rails.application.routes.draw do
   # %w faz um array de texto (string e vírgula)
   resources :car_models, only: %i[index new create show]
 
-  resources :rentals, only: %i[index new create] do
+  resources :rentals, only: %i[index new create show] do
     get 'search', on: :collection #Uma rota customizada dentro do rental, resultado: search_rentals_path
+    get 'start', on: :member 
+    post 'start', on: :member, to: 'rentals#confirm'
   end
 end
