@@ -20,5 +20,11 @@
       <dd><%= @rental.car_rental.car.description %></dd>
       <dt>Usuário Responsável:</dt>
       <dd><%= @rental.car_rental.user.email %></dd>
+      <dt>Valor da Diária:</dt>
+      <dd><%= number_to_currency @rental.car_rental.daily_rate %></dd>
     </dl>
+    <h2>Acessórios Contratados</h2>
+    <% @rental.car_rental.add_ons.each do |add_on|%>
+      <%= add_on.name %>
+    <% end %>  
   <% end %>  

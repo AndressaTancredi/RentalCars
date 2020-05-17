@@ -103,5 +103,6 @@ feature 'Admin begin rental' do
     expect(page).to have_content 'Horário da Retirada: 01/05/2020 13:00:00'
     expect(page).to have_content 'Usuário Responsável: test@test.com'
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
+    expect(page).to have_content 'Valor da Diária: R$ 100,00'
   end
 end

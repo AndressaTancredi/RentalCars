@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      car_rental:
+        one: Locação
+        other: Locações
+    attributes:
+      car_rental:
+        car_id: Carro
+        car: Carro

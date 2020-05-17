@@ -29,4 +29,6 @@ Rails.application.routes.draw do
     get 'start', on: :member 
     post 'start', on: :member, to: 'rentals#confirm'
   end
+
+  resources :car_rentals, only: [:create]
 end
