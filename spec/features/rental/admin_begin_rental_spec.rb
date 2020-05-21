@@ -105,4 +105,6 @@ feature 'Admin begin rental' do
     expect(page).to have_content 'Carro Retirado: Fiat Mobi - Placa: ABC-1234 - Cor: Azul'
     expect(page).to have_content 'Valor da Diária: R$ 100,00'
   end
+
+  # TODO Encerrar a Locação aula 14 21m
 end
