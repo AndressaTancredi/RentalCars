@@ -1,19 +1,15 @@
 class Client < ApplicationRecord
   validates :name, :document, :email, presence: true
   validates :document, :email, uniqueness: true
-  validate :valid_document
+  validate :valid_cpf
   has_many :rentals
 
   def formatted_document
     CPF.new(self.document).formatted
   end
 
-  def identification
-    "#{name} - #{formatted_document}"
-  end
-
-  def valid_document
-    return if document.nil? # guard clause
+  def valid_cpf
+    return if document.nil?
 
     unless document.length == 11
       errors.add(:document, 'deve ter 11 números')

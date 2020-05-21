@@ -11,7 +11,11 @@ feature 'Admin register rental' do
                             email: 'teste@teste.com.br')
           
     user = User.create!(email: 'test@test.com.br', password: '12345678')
-                          
+    
+    mail = double('RentalMailer')
+    allow(RentalMailer).to receive(:rental_scheduled).and_return(mail)
+    allow(mail).to receive(:deliver_now)
+
     visit root_path
     click_on 'Entrar'
     fill_in 'Email', with: 'test@test.com.br'
@@ -25,11 +29,13 @@ feature 'Admin register rental' do
     select client.name, from: 'Cliente'
     click_on 'Enviar'
 
+    expect(RentalMailer).to have_received(:rental_scheduled)
     expect(page).to have_content('16/04/2030')
     expect(page).to have_content('18/04/2030')
     expect(page).to have_content('Fulano Sicrano')
     expect(page).to have_content('A')
     expect(page).to have_content('Locação cadastrada com sucesso')
+    #expect(ActionMailer::Base.deliveries.count).to eq 1
 
   end
 

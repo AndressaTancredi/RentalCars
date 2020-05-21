@@ -18,6 +18,8 @@ class RentalsController < ApplicationController
     if @rental.save
       # Flash sempre acompanha um redirect
       flash[:success] = 'Locação cadastrada com sucesso'
+      # Mandando email:
+      RentalMailer.rental_scheduled(@rental.id).deliver_now
       redirect_to rentals_path
     else
       @car_categories = CarCategory.all

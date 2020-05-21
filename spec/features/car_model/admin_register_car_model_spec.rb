@@ -2,8 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register car model' do
   scenario 'successfully' do
-    fiat = Manufacturer.create!(name:'Fiat')
-    cat_a = CarCategory.create!(name: 'A', daily_rate: 50, car_insurance: 20, third_part_insurance: 20)
+    fiat = create(:manufacturer, name: 'Fiat')
+    cat_a = create(:car_category, name: 'A')
     
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     login_as(user, scope: :user)
@@ -28,6 +28,6 @@ feature 'Admin register car model' do
     expect(page).to have_content('Ano: 2020')
   end
 
-  # Arrumar i18n
+  # TODO Arrumar i18n
   # Fazer _form
 end

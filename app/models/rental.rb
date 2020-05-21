@@ -12,10 +12,11 @@ class Rental < ApplicationRecord
 
   def generate_code
     # self pro RoR entender que não é uma var é uma atribuição
-    self.code = SecureRandom.alphanumeric(6).upcase
-  end
-
-  def set_scheduled
-    self.status = 'scheduled'
+    # Loop para garantir que não aja código repetido
+    self.code = loop do
+      code = SecureRandom.alphanumeric(6).upcase
+        break code unless Rental.exists?(code: code)
+    end
+    # TODO Fazer teste para verificar se gerou dois códigos diferentes Aula 14 58m
   end
 end
