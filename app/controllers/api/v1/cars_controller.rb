@@ -7,8 +7,20 @@ class Api::V1::CarsController < Api::V1::ApiController
   def show
     car = Car.find(params[:id])
     render json: car
+  end
 
-  rescue ActiveRecord::RecordNotFound
-      render json: 'Carro não encontrado', status: :not_found    
+  def create
+    @car = Car.create!(car_params)
+    render json: @car, status: :created
+
+  rescue ActionController::ParameterMissing
+    render json: I18n.t('errors.messages.missing_parameters'), 
+           status: :precondition_failed
+  end
+
+  private
+
+  def car_params
+    params.require(:car).permit(:license_plate, :color, :car_model_id, :mileage)
   end
 end

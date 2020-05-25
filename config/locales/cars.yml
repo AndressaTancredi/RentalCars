@@ -1,0 +1,10 @@
+pt-BR:
+  activerecord:
+    models:
+      car: 
+        one: Carro
+        other: Carros
+    attributes:
+      car:
+        car_model: Modelo de Carro
+        car_model_id: Modelo de Carro

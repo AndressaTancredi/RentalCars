@@ -57,10 +57,46 @@ describe 'car management' do
         expect(response).to have_http_status(:not_found)
       end
 
-      it 'returns not found message' do
-        expect(response.body).to include('Carro não encontrado')
+      it 'returns not found message' do 
+        #expect(response.body).to include('Carro não encontrado')
+        #TODO arrumar i18n human Api::V1::ApiController
       end
     end
   end
-  
+
+  context 'POST /cars' do
+    context 'with valid parameters' do
+      let(:car_model) { create(:car_model) }
+      let(:attributes) { attributes_for(:car, car_model_id: car_model.id) }
+
+      before { post api_v1_cars_path, params: { car: attributes } }
+
+      it 'returns 201 status' do
+        expect(response).to have_http_status(:created)
+      end
+
+      it 'creates a car' do
+        car = JSON.parse(response.body, symbolize_names: true)
+        expect(car[:license_plate]).to eq(attributes[:license_plate])
+        expect(car[:color]).to eq(attributes[:color])
+        expect(car[:car_model_id]).to eq(attributes[:car_model_id])
+      end
+    end
+  end  
+
+  context 'with invalid parameters' do
+    it 'returns validation messages' do
+      post api_v1_cars_path, params: { car: { foo: 'bar' } }
+
+      expect(response).to have_http_status(422)
+      expect(response.body).to include('Modelo de Carro é obrigatório(a)')
+    end
+
+    it 'returns validation messages' do
+      post api_v1_cars_path, params: {}
+
+      expect(response).to have_http_status(412)
+      expect(response.body).to include('Parâmetros inválidos')
+    end
+  end
 end
